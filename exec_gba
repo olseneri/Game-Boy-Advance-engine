@@ -1,0 +1,3 @@
+#!/bin/bash
+
+mgba-qt all.gba
