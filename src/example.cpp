@@ -10,8 +10,8 @@ int main() {
 
 
 
-        //foo::write(0xbf);
-        //bar::write(foo::read());
+        foo::write(0xbf);
+        bar::write(foo::read());
         while(1){}
     return 0;
 }

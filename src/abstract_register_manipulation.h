@@ -17,5 +17,5 @@ public:
         return (*(data_width *)register_address & bitmask) >> shift_amount;
     };
 };
-std::sizeof();
+
 #endif //GBA_GAMEDEV_ABSTRACT_REGISTER_MANIPULATION_H
