@@ -7,6 +7,8 @@
 
 #include "types.h"
 
+//TODO: remove shift_amount template argument using a constexpr function that takes the bitmask as an input
+//TODO: test clear()
 template <typename data_width, uintptr_t register_address, data_width shift_amount, data_width bitmask, bool readable, bool writable, typename access_type = data_width>
 class abstract_register_manipulation {
 public:
@@ -14,9 +16,14 @@ public:
 
     static constinit inline volatile data_width* const _register = reinterpret_cast<volatile data_width*>(register_address);
 
+    static void clear(){
+        static_assert(writable, "Cannot write to this register");
+        *_register = ~(bitmask | (~*_register));
+    };
+
     static void write(access_type value){
         static_assert(writable, "Cannot write to this register");
-        *_register = (*_register & ~bitmask) | ((data_width)value << shift_amount);
+        *_register = (~((~(*_register)) | bitmask)) ^ ((data_width)value << shift_amount);
     };
 
     static access_type read(){

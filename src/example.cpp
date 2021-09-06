@@ -4,19 +4,18 @@
 #include "abstract_register_manipulation.h"
 #include "registers.h"
 
+//TODO: Enforce enums within the same scope as the class that they are used with
+//TODO: Is it possible to static_assert() so that you can't pass enums that collapse to ints?
 enum lobster {kids, are, kinda, smelly};
 
-
-using foo = abstract_register_manipulation<u16,0x02000000,0,0xff,true,true,lobster>;
+using foo = abstract_register_manipulation<u32,0x02000000,4,0xff,true,true>;
+using bar = abstract_register_manipulation<u32,0x02000000,0,0x07,true,true>;
 //using bar = abstract_register_manipulation<u16,0x06000010,0,0xff,true,true>;
 //using bang = abstract_register_manipulation<u16,0x06000014,0,0xff,true,true>;
 
 int main() {
+    foo::write(0xffff);
 
-    //DISPCNT_BG_MODE::write(0xff);
-        foo::write(are);
-        //bar::write(0x001f);
-        //bang::write(bar::read());
-        while(1){}
+    while(true){}
     return 0;
 }
