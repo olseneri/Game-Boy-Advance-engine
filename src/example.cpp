@@ -8,8 +8,8 @@
 //TODO: Is it possible to static_assert() so that you can't pass enums that collapse to ints?
 enum lobster {kids, are, kinda, smelly};
 
-using foo = abstract_register_manipulation<u32,0x02000000,4,0xff,true,true>;
-using bar = abstract_register_manipulation<u32,0x02000000,0,0x07,true,true>;
+using foo = abstract_register_manipulation<u32,0x02000000,0b00000000000000000000000000000010,true,true>;
+using bar = abstract_register_manipulation<u32,0x02000000,0x07,true,true>;
 //using bar = abstract_register_manipulation<u16,0x06000010,0,0xff,true,true>;
 //using bang = abstract_register_manipulation<u16,0x06000014,0,0xff,true,true>;
 
